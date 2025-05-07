@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auto GPS Redirect</title>
+</head>
+<body>
+  <h2>Getting your GPS location...</h2>
+  <p>Please wait while we redirect you to the form.</p>
+
+  <script>
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const gps = encodeURIComponent(lat + "," + lon);
+
+      // Your final Google Form link with GPS auto-filled
+      const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSf1vLxMbcV7MQR9ksSJzd9q4BFy1Q-0FAfWz7Y3tpa0s8x5lw/viewform?usp=pp_url&entry.1591583033=" + gps;
+
+      window.location.href = formLink;
+    }, function(error) {
+      alert("Unable to get location. Please enable location services.");
+    });
+  </script>
+</body>
+</html>
